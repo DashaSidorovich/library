@@ -1,12 +1,10 @@
 sap.ui.define([
 		"./BaseController",
-		"sap/ui/model/json/JSONModel", 
-		"jblibs/s000/Back"
-	], function(BaseController, JSONModel, Back) {
+		"sap/ui/model/json/JSONModel"
+	], function(BaseController, JSONModel) {
 	"use strict";
 
 	return BaseController.extend("./App", { 
-        jbBack: new Back(),
 		onInit:  function () {
 			var oViewModel,
 				fnSetAppNotBusy,

@@ -3,7 +3,6 @@ sap.ui.define(
     "./BaseController",
     "sap/ui/model/json/JSONModel",
     "jblibs/s000/formatter",
-    "jblibs/s000/Back",
     "jblibs/s004/UserDetail",
     "jblibs/s004/ProjectDetails", 
     "sap/m/Token",
@@ -12,7 +11,6 @@ sap.ui.define(
     BaseController,
     JSONModel,
     formatter,
-    libsjbBack,
     UserDetail,
     ProjectDetails,
     Token
@@ -21,7 +19,6 @@ sap.ui.define(
 
     return BaseController.extend("./Worklist", {
       UserDetail: new UserDetail(),
-      jbBack: new libsjbBack(),
       formatter: formatter,
       jsonAnnotation: new JSONModel({
         	RequestAtLeast: "", 
@@ -791,7 +788,6 @@ sap.ui.define(
         });
         this.setModel(oViewModel, "worklistView");
 
-        this.jbBack.Init(this);
 
     	this.setModel(this.jsonAnnotation, "annotation");
 
