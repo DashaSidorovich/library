@@ -1,0 +1,42 @@
+service 
+{ 
+///* <DeactivateBegin> 
+
+ "JETCLOUD_HDB"."jetCloud.jbcommon.s001.dbv::AdminInstances" as "InstancesForServerAdmin" keys ("Language", "InstanceID") 
+ create forbidden update forbidden delete forbidden; 
+ 
+"JETCLOUD_HDB"."jetCloud.jbcommon.s001.dbv::AdminUsers" as "Users" with("UserAvatarURL", "UserFullName", "userfullname", "UserID", "Instance") keys("UserID")
+;
+
+"JETCLOUD_HDB"."jetCloud.jbcommon.s001.dbv::AdminApplications" as "Applications" with("ApplicationCode", "ApplicationIcon", "ApplicationText", "SubModuleCode") keys("ApplicationCode")
+;
+ 
+"JETCLOUD_HDB"."jetCloud.jbcommon.s001.dbv::AdminEntities" as "Entities" with("EntityAlias", "EntityCode", "EntityText") keys("EntityCode")
+;
+
+"JETCLOUD_HDB"."jetCloud.jbcommon.s001.dbv::AdminClasses" as "ClassesText" with("ClassText", "ClassID") keys("ClassID")
+;
+
+
+"jetCloud.jbcommon.s004.cv::UserDetails" as "UserDetails" key generate local "ID"
+aggregates always (SUM of "Counter") parameters via entity "UserDetailsExe";
+
+    "JETCLOUD_HDB"."jetCloud.jbcommon.s006.dbv::vmAdminLogs" as "vmAdminLogs" keys ("SmartVariantID","isFavorites")
+    create using "jetCloud.jbcommon.s006.sp::VariantsIns"  
+    update using "jetCloud.jbcommon.s006.sp::VariantsUpd"        
+    delete using "jetCloud.jbcommon.s006.sp::VariantsDel"; 
+ 
+
+"JETCLOUD_HDB"."jetCloud.jbcommon.s001.dbv::AdminLogs" as "Logs" keys("LogID")
+;
+
+
+// <DeactivateEnd>*/
+}
+annotations {
+enable OData4SAP;
+}
+settings
+{
+support null;
+}

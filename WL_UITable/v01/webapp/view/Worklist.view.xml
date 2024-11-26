@@ -1,0 +1,80 @@
+<mvc:View controllerName="jbsamples.WL_UITable.controller.Worklist"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:f="sap.f"
+	xmlns:table="sap.ui.table"
+	xmlns:core="sap.ui.core"
+	xmlns:s000="jblibs.s000"
+	xmlns:s006="jblibs.s006"
+	>
+	<f:DynamicPage id="dynamicPage" fitContent="true" class="sapUiNoContentPadding jbFilterBarHeaderNoPadding" headerPinned="false" preserveHeaderStateOnScroll="false">
+		<f:header>
+			<f:DynamicPageHeader pinnable="false">
+				<s006:FilterBar id="filterBar" 
+    				URLAlias="AdminLogs" VMSettingEntity="vmAdminLogs" VMPersistencyKey="jbcommon_log_AdminLogs" firstLine="ClassText,InstanceText,DateTime"
+    				URLfilter="true" liveMode="true" btnShowHide="true" btnShowHidePressed="true"
+    				entityData="Logs" SearchFields="ApplicationText, UserFullName, InstanceText, Instance, LogMessageText, LogID, LogTypeID, UserID"
+    				 ParametersModel="annotation" change="onPressFilterBarChange" labelPlacement="placeholder" alignControls="Start" btnMode="standard" secondaryControlID="btnTable" tableID="table">
+					<s006:rightToolbar>
+						<s006:BtnTableSettings id="btnTable" URLAlias="AdminLogs" URLfilter="true" VMID="" icon="sap-icon://action-settings" type="Transparent"
+					change="prepareSelect" tableID="table" ParametersModel="annotation" widthColumns="15rem"/>
+					    <s006:BtnTableExport icon="sap-icon://excel-attachment" type="Transparent" id="excel" tableID="table"/>
+						<Button type="Transparent" icon="sap-icon://refresh" press="onPressRefresh"/>
+					</s006:rightToolbar>
+				</s006:FilterBar>
+			</f:DynamicPageHeader>
+		</f:header>
+		<f:content>
+			<NavContainer height="100%" width="100%">
+				<table:Table id="table" visibleRowCountMode="Auto" minAutoRowCount="1" enableBusyIndicator="true" busyIndicatorDelay="0" threshold="160" selectionMode="None"
+					selectionBehavior="Row" >
+					<table:columns>
+						<table:Column id="UserFullName" sortProperty="UserFullName" width="18rem">
+							<Label text="{i18n>ttlUserFullName}"/>
+							<table:template>
+								<HBox alignItems="Center">
+									<s000:AvatarAndLink text="{UserFullName}" clickable="text" imageURL="{UserAvatarURL}" size="XXS" press="handleLinkPressUserDetail"/>
+								</HBox>
+							</table:template>
+						</table:Column>
+						<table:Column id="ApplicationText" sortProperty="ApplicationText" width="12rem">
+							<Label text="{i18n>tApplicationText}"/>
+							<table:template>
+								<HBox alignItems="Center">
+									<s000:AvatarAndLink text="{ApplicationText}" clickable="text" icon="{parts:['ApplicationText', 'ApplicationIcon'], formatter:'.formatter.checkIcon'}" size="XXS"/>
+								</HBox>
+							</table:template>
+						</table:Column>
+						<table:Column id="ModuleText" sortProperty="ModuleText" width="20rem">
+							<Label text="{i18n>tModuleText}"/>
+							<table:template>
+								<HBox alignItems="Center" renderType="Bare">
+									<core:Icon src="{parts:['ModuleText', 'ModuleIcon'], formatter : '.formatter.checkIcon'}" class="sapUiTinyMarginEnd"/>
+									<Text text="{ModuleText}"/>
+								</HBox>
+							</table:template>
+						</table:Column>
+						<table:Column id="EntityText" sortProperty="EntityText" width="20rem">
+							<Label text="{i18n>tEntityText}"/>
+							<table:template>
+								<HBox alignItems="Center" renderType="Bare">
+									<core:Icon src="{parts:['EntityText', 'EntityIcon'], formatter : '.formatter.checkIcon'}" class="sapUiTinyMarginEnd"/>
+									<Text text="{EntityText}"/>
+								</HBox>
+							</table:template>
+						</table:Column>
+						<table:Column id="SubModuleText" sortProperty="SubModuleText" width="20rem">
+							<Label text="{i18n>tSubModuleText}"/>
+							<table:template>
+								<HBox alignItems="Center" renderType="Bare">
+									<core:Icon src="{parts:['SubModuleText', 'SubModuleIcon'], formatter : '.formatter.checkIcon'}" class="sapUiTinyMarginEnd"/>
+									<Text text="{SubModuleText}"/>
+								</HBox>
+							</table:template>
+						</table:Column>
+					</table:columns>
+				</table:Table>
+			</NavContainer>
+		</f:content>
+	</f:DynamicPage>
+</mvc:View>

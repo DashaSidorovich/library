@@ -1,0 +1,6 @@
+{
+    "exposed":true,
+    "authentication":[{"method":"LogonTicket"},{"method":"Form"}],
+    "authorization": [  ],
+    "prevent_xsrf": true 
+}
